@@ -33,6 +33,12 @@
             ctx.drawImage(img, 0, 0);
             imageData = ctx.getImageData(0, 0, img.width, img.height).data;
             console.log("image data:", imageData);
+          
+            const model = tf.loadLayersModel('model/model.json');
+
+            const example = tf.fromPixels(imageData);
+            const prediction = model.predict(example);
+            console.log(prediction)
         }
 
 
@@ -45,11 +51,7 @@
 
 
         
-        const model = await tf.loadLayersModel('model/model.json');
-
-        const example = tf.fromPixels(imageData);
-        const prediction = model.predict(example);
-        console.log(prediction)
+       
         
       });
     </script>
