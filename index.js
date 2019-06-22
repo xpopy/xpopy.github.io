@@ -1,12 +1,7 @@
 
-console.log("It WORKS!")
+console.log("Loading tensorflow model...")
 
-
-/*
-import * as tf from '@tensorflow/tfjs';
-
-const model = await tf.loadLayersModel('https://foo.bar/tfjs_artifacts/model.json');
+const model = await tf.loadLayersModel('model/model.json');
 
 const example = tf.fromPixels(webcamElement);  // for example
 const prediction = model.predict(example);
-*/
