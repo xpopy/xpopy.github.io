@@ -34,7 +34,7 @@
             imageData = ctx.getImageData(0, 0, img.width, img.height).data;
             console.log("image data:", imageData);
           
-            const model = tf.loadLayersModel('model/model.json');
+            const model = tf.loadLayersModel('https://raw.githubusercontent.com/xpopy/xpopy.github.io/master/model/model.json');
 
             //const example = tf.fromPixels(imageData);
             const example = imageData;
