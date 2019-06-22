@@ -3,10 +3,60 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
-    <script src="index.js"></script>
+    <script>
+      
+      console.log("Loading tensorflow model...")
+
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      var imageData;
+      document.getElementById('myFile').onchange = function (evt) {
+          var tgt = evt.target || window.event.srcElement,
+              files = tgt.files;
+
+          // FileReader support
+          if (FileReader && files && files.length) {
+              var fr = new FileReader();
+              fr.onload = () => showImage(fr);
+              fr.readAsDataURL(files[0]);
+          }
+      }
+
+      function showImage(fileReader) {
+          var img = document.getElementById("myImage");
+          img.onload = () => getImageData(img);
+          img.src = fileReader.result;
+      }
+
+      function getImageData(img) {
+          ctx.drawImage(img, 0, 0);
+          imageData = ctx.getImageData(0, 0, img.width, img.height).data;
+          console.log("image data:", imageData);
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      const model = await tf.loadLayersModel('model/model.json');
+
+      const example = tf.fromPixels(webcamElement);  // for example
+      const prediction = model.predict(example);
+      
+    </script>
   </head>
   <body>
     <h1>Hello World</h1>
     <p>This page is just temporary. I might make something cool here if i feel like it</p>
+    
+    <input type="file" id="myFile">Load image</input>
+    <br>
+    <img id="myImage" style="border:1px" />
   </body>
 </html>
