@@ -4,51 +4,54 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
     <script>
-      
-      console.log("Loading tensorflow model...")
+      document.addEventListener("DOMContentLoaded", function(event) { 
 
-      var canvas = document.createElement("canvas");
-      var ctx = canvas.getContext("2d");
-      var imageData;
-      document.getElementById('myFile').onchange = function (evt) {
-          var tgt = evt.target || window.event.srcElement,
-              files = tgt.files;
+        console.log("Loading tensorflow model...")
 
-          // FileReader support
-          if (FileReader && files && files.length) {
-              var fr = new FileReader();
-              fr.onload = () => showImage(fr);
-              fr.readAsDataURL(files[0]);
-          }
-      }
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        var imageData;
+        document.getElementById('myFile').onchange = function (evt) {
+            var tgt = evt.target || window.event.srcElement,
+                files = tgt.files;
 
-      function showImage(fileReader) {
-          var img = document.getElementById("myImage");
-          img.onload = () => getImageData(img);
-          img.src = fileReader.result;
-      }
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = () => showImage(fr);
+                fr.readAsDataURL(files[0]);
+            }
+        }
 
-      function getImageData(img) {
-          ctx.drawImage(img, 0, 0);
-          imageData = ctx.getImageData(0, 0, img.width, img.height).data;
-          console.log("image data:", imageData);
-      }
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      /*
-      const model = await tf.loadLayersModel('model/model.json');
+        function showImage(fileReader) {
+            var img = document.getElementById("myImage");
+            img.onload = () => getImageData(img);
+            img.src = fileReader.result;
+        }
 
-      const example = tf.fromPixels(webcamElement);  // for example
-      const prediction = model.predict(example);
-      */
+        function getImageData(img) {
+            ctx.drawImage(img, 0, 0);
+            imageData = ctx.getImageData(0, 0, img.width, img.height).data;
+            console.log("image data:", imageData);
+        }
+
+
+
+
+
+
+
+
+
+
+        /*
+        const model = await tf.loadLayersModel('model/model.json');
+
+        const example = tf.fromPixels(webcamElement);  // for example
+        const prediction = model.predict(example);
+        */
+        
+      });
     </script>
   </head>
   <body>
