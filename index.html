@@ -38,7 +38,7 @@
               const model = await tf.loadLayersModel('https://raw.githubusercontent.com/xpopy/xpopy.github.io/master/model/model.json');
               //const example = tf.fromPixels(imageData);
               const example = imageData;
-              const prediction = model.predict(example);
+              const prediction = await model.predict(example);
               console.log(prediction)
             
             })();
